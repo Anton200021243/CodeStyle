@@ -12,12 +12,12 @@ public class InstantiateBulletsShooting : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(_shootingWorker());
+        StartCoroutine(Shoot());
     }
 
-    private IEnumerator _shootingWorker()
+    private IEnumerator Shoot()
     {
-        bool isWork = enabled;
+        bool isWork = true;
 
         while (isWork)
         {
