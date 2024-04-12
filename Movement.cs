@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     private Transform _pointsParent;
     private int _nextPointIndex;
 
-    void Start()
+    private void Start()
     {
         _points = new Transform[_pointsParent.childCount];
 

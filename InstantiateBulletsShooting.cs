@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class InstantiateBulletsShooting : MonoBehaviour
+public class BulletSpawn : MonoBehaviour
 {
     [SerializeField] private Transform _prefab;
     [SerializeField] private Transform _target;
@@ -18,15 +18,17 @@ public class InstantiateBulletsShooting : MonoBehaviour
     private IEnumerator Shoot()
     {
         bool isWork = true;
+        var wait = new WaitForSeconds(_delay);
+
 
         while (isWork)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
-            var NewBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
+            var newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
             NewBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
 
-            yield return new WaitForSeconds(_delay);
+            yield return wait;
         }
     }
 }
