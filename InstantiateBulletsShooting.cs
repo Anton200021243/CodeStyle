@@ -26,7 +26,7 @@ public class BulletSpawn : MonoBehaviour
             Vector3 direction = (_target.position - transform.position).normalized;
             var newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
-            NewBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
+            newBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
 
             yield return wait;
         }
