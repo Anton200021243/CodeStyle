@@ -25,11 +25,9 @@ public class Movement : MonoBehaviour
             SetNextPoint();
     }
 
-    private Vector3 SetNextPoint(){
-        _nextPointIndex++;
-
-        if (_nextPointIndex == _points.Length)
-            _nextPointIndex = 0;
+    private Vector3 SetNextPoint()
+    {
+        _nextPointIndex = (_nextPointIndex++) % _points.Length;
 
         Vector3 nextPointVector = _points[_nextPointIndex].transform.position;
         transform.forward = nextPointVector - transform.position;

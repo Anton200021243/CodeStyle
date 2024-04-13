@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Shooter : MonoBehaviour
 {
     [SerializeField] private Transform _prefab;
@@ -18,14 +17,14 @@ public class Shooter : MonoBehaviour
     private IEnumerator Shoot()
     {
         bool isWork = true;
-        var wait = new WaitForSeconds(_delay);
-
+        WaitForSeconds wait = new WaitForSeconds(_delay);
 
         while (isWork)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
-            var newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
+            Transform newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
+            newBullet.GetComponent<Rigidbody>().transform.up = direction;
             newBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
 
             yield return wait;
