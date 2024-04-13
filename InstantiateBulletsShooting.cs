@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BulletSpawn : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
     [SerializeField] private Transform _prefab;
     [SerializeField] private Transform _target;
@@ -10,7 +10,7 @@ public class BulletSpawn : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _delay;
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(Shoot());
     }
