@@ -24,7 +24,7 @@ public class Shooter : MonoBehaviour
             Vector3 direction = (_target.position - transform.position).normalized;
             Transform newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
-            newBullet.GetComponent<Rigidbody>().transform.up = direction;
+            newBullet.transform.up = direction;
             newBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
 
             yield return wait;
