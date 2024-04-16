@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Mover : MonoBehaviour
 {
-    [SerializeField] private Transform[] _points;
     [SerializeField] private float _moveSpeed = 10;
+    [SerializeField] private Transform _pointsParent;
 
-    private Transform _pointsParent;
+    private Transform[] _points;
+    private Vector3 _nextPoint;
     private int _nextPointIndex;
 
     private void Start()
@@ -22,16 +23,14 @@ public class Movement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, point.position, _moveSpeed * Time.deltaTime);
 
         if (transform.position == point.position)  
-            SetNextPoint();
+            MoveNextPoint();
     }
 
-    private Vector3 SetNextPoint()
+    private void MoveNextPoint()
     {
-        _nextPointIndex = (_nextPointIndex++) % _points.Length;
+        _nextPointIndex = _nextPointIndex++ % _points.Length;
 
         Vector3 nextPointVector = _points[_nextPointIndex].transform.position;
-        transform.forward = nextPointVector - transform.position;
-
-        return nextPointVector;   
+        transform.forward = nextPointVector - transform.position; 
     }
 }

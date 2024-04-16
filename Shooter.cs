@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] private Transform _prefab;
+    [SerializeField] private Rigidbody _prefab;
     [SerializeField] private Transform _target;
 
     [SerializeField] private float _speed;
@@ -22,10 +22,10 @@ public class Shooter : MonoBehaviour
         while (isWork)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
-            Transform newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
+            Rigidbody newBullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
             newBullet.transform.up = direction;
-            newBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
+            newBullet.velocity = direction * _speed;
 
             yield return wait;
         }
